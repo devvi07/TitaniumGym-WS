@@ -14,10 +14,7 @@ exports.crearMedida = async (req, res) => {
 exports.getMedidaByUser = async (req, res) => {
   try {
 
-    /*const medida = await Medidas.findById(req.params.id);
-    if (!medida) return res.status(404).json({ mensaje: "No encontrado" });*/
-
-    const { usuario } = req;
+    const { usuario } = req.params;
     console.log('usuario ',usuario);
     const filtro = {};
 
@@ -27,6 +24,6 @@ exports.getMedidaByUser = async (req, res) => {
     res.json(medidas);
 
   } catch {
-    res.status(400).json({ error: "ID inválido" });
+    res.status(400).json({ error: "Usuario inexistente" });
   }
 };
