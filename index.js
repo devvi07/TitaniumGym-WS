@@ -18,6 +18,8 @@ app.use(express.json());
 // Rutas
 app.use("/api/usuario", require("./routes/usuarios"));
 app.use("/api/medidas", require("./routes/medidas"));
+app.use("/api/rutinas", require("./routes/rutinas"));
+app.use("/api/ejercicios", require("./routes/ejercicios"));
 
 // Inicio del servidor
 app.listen(PORT, () => {
