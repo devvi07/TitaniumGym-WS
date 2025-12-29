@@ -26,3 +26,20 @@ exports.getEjercicioByRutina = async (req, res) => {
     res.status(500).json({ msg: 'Error al obtener ejercicios' });
   }
 };
+
+exports.getEjercicioByRutinas = async (req, res) => {
+  try {
+    const { idRutinas } = req.body;
+
+    const ejercicios = await Ejercicios.find({
+      idRutina: {
+        $in: idRutinas.map(id => new mongoose.Types.ObjectId(id))
+      }
+    }).populate('idRutina');
+
+    res.json(ejercicios);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: 'Error al obtener ejercicios' });
+  }
+};
