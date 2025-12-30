@@ -20,6 +20,7 @@ app.use("/api/usuario", require("./routes/usuarios"));
 app.use("/api/medidas", require("./routes/medidas"));
 app.use("/api/rutinas", require("./routes/rutinas"));
 app.use("/api/ejercicios", require("./routes/ejercicios"));
+app.use("/api/rutinasByUser", require("./routes/rutinasByUser"));
 
 // Inicio del servidor
 app.listen(PORT, () => {
