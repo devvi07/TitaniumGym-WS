@@ -15,7 +15,8 @@ const rutinasByUserSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Ejercicios'
     }
-  ]
+  ],
+  data:[]
 }, { timestamps: true });
 
 module.exports = mongoose.model('RutinasByUser', rutinasByUserSchema);
