@@ -13,7 +13,7 @@ const customersSchema = new mongoose.Schema({
   is_active: Boolean,
   user_type: Number,
   profile_url: String,
-  dias_restantes: Number
+  reminder_days: Number
 }, { timestamps: true });
 
 module.exports = mongoose.model('Custumers', customersSchema);
