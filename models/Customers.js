@@ -11,6 +11,9 @@ const customersSchema = new mongoose.Schema({
   emergency_contact_name: String,
   emergency_contact_phone: String,
   is_active: Boolean,
+  user_type: Number,
+  profile_url: String,
+  dias_restantes: Number
 }, { timestamps: true });
 
 module.exports = mongoose.model('Custumers', customersSchema);
