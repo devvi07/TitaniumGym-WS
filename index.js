@@ -6,7 +6,7 @@ const connectDB = require("./config/db");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+const auth = require("./middlewares/auth");
 // Conexión a base de datos
 connectDB();
 
@@ -15,12 +15,14 @@ app.use(cors());
 app.use(compression());
 app.use(express.json());
 
+app.use("/api/token", require("./routes/token"));
 // Rutas
-app.use("/api/usuario", require("./routes/usuarios"));
-app.use("/api/medidas", require("./routes/medidas"));
-app.use("/api/rutinas", require("./routes/rutinas"));
-app.use("/api/ejercicios", require("./routes/ejercicios"));
-app.use("/api/rutinasByUser", require("./routes/rutinasByUser"));
+app.use("/api/usuario", auth, require("./routes/usuarios"));
+app.use("/api/medidas", auth, require("./routes/medidas"));
+app.use("/api/rutinas", auth, require("./routes/rutinas"));
+app.use("/api/ejercicios", auth, require("./routes/ejercicios"));
+app.use("/api/rutinasByUser", auth, require("./routes/rutinasByUser"));
+
 
 // Inicio del servidor
 app.listen(PORT, () => {
