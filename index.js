@@ -22,6 +22,9 @@ app.use("/api/medidas", auth, require("./routes/medidas"));
 app.use("/api/rutinas", auth, require("./routes/rutinas"));
 app.use("/api/ejercicios", auth, require("./routes/ejercicios"));
 app.use("/api/rutinasByUser", auth, require("./routes/rutinasByUser"));
+app.use("/api/customers", auth, require("./routes/customers"));
+app.use("/api/checkins", auth, require("./routes/checkins"));
+app.use("/api/checkouts", auth, require("./routes/checkouts"));
 
 
 // Inicio del servidor
