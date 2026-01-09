@@ -47,3 +47,20 @@ exports.eliminarUsuario = async (req, res) => {
     res.status(400).json({ error: "ID inválido" });
   }
 };
+
+exports.getUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const usuario = await Usuario.findById(id);
+
+    if (!usuario) 
+      return res.status(404).json({ error: "Usuario inexistente" });
+    
+
+    res.json(usuario);
+
+  } catch (error) {
+    res.status(400).json({ error: "ID inválido" });
+  }
+};
