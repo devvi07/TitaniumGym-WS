@@ -18,7 +18,7 @@ exports.getCustomerById = async (req, res) => {
     res.json(customer);
 
   } catch (error) {
-    res.status(400).json({ error: "ID inválido" });
+    res.status(404).json({ error: "ID inválido" });
   }
 };
 
@@ -35,7 +35,7 @@ exports.actualizarCustomer = async (req, res) => {
     if (!actualizado) return res.status(404).json({ mensaje: "No encontrado" });
     res.json(actualizado);
   } catch {
-    res.status(400).json({ error: "ID inválido" });
+    res.status(404).json({ error: "ID inválido" });
   }
 };
 
@@ -45,6 +45,6 @@ exports.eliminarCustomer = async (req, res) => {
     if (!eliminado) return res.status(404).json({ mensaje: "No encontrado" });
     res.json({ mensaje: "Custumer eliminado" });
   } catch {
-    res.status(400).json({ error: "ID inválido" });
+    res.status(404).json({ error: "ID inválido" });
   }
 };
