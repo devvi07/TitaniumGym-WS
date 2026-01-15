@@ -11,7 +11,7 @@ exports.crearUsuario = async (req, res) => {
   res.status(201).json(nuevo);
 };
 
-exports.login = async (req, res) => {
+/*exports.login = async (req, res) => {
   const { nombre, password } = req.body;
 
   const usuario = await Usuario.findOne({ nombre: nombre });
@@ -26,7 +26,24 @@ exports.login = async (req, res) => {
 
   res.json({ mensaje: 'Login exitoso', usuario });
   
+};*/
+exports.login = async (req, res) => {
+  const { nombre, password } = req.body;
+
+  const usuario = await Usuario.findOne({ nombre })
+    .collation({ locale: 'es', strength: 1 }); //ignora acentos y mayúsculas
+
+  if (!usuario)
+    return res.status(401).json({ mensaje: '¡Usuario inexistente!' });
+
+  const pass = password === usuario.password;
+
+  if (!pass)
+    return res.status(401).json({ mensaje: '¡Contraseña incorrecta!' });
+
+  res.json({ mensaje: 'Login exitoso', usuario });
 };
+
 
 exports.actualizarUsuario = async (req, res) => {
   try {
