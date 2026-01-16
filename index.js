@@ -25,6 +25,7 @@ app.use("/api/rutinasByUser", auth, require("./routes/rutinasByUser"));
 app.use("/api/customers", auth, require("./routes/customers"));
 app.use("/api/checkins", auth, require("./routes/checkins"));
 app.use("/api/checkouts", auth, require("./routes/checkouts"));
+app.use("/api/ejercicios-historico", auth, require("./routes/ejerciciosHistorico"));
 
 
 // Inicio del servidor
