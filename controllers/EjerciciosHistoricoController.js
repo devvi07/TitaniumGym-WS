@@ -12,8 +12,6 @@ exports.creaEjerciciosHistorico = async (req, res) => {
   res.status(201).json(nuevo);
 };
 
-const mongoose = require('mongoose');
-
 exports.getEjerciciosHistoricoByUser = async (req, res) => {
   try {
     let { usuario } = req.params;
