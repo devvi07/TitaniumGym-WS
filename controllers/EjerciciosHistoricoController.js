@@ -14,6 +14,22 @@ exports.creaEjerciciosHistorico = async (req, res) => {
 
 exports.getEjerciciosHistoricoByUser = async (req, res) => {
   try {
+    const { usuario } = req.params;
+
+    const historico = await EjerciciosHistorico.find({
+      usuario
+    });
+
+    res.json(historico);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: 'Error al obtener ejercicios' });
+  }
+};
+
+exports.getEjerciciosHistoricoByUserEx = async (req, res) => {
+  try {
     const { usuario, ejercicio } = req.params;
 
     const historico = await EjerciciosHistorico.find({

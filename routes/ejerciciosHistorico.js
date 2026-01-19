@@ -3,7 +3,8 @@ const router = express.Router();
 const ejerciciosHistoricoController = require("../controllers/EjerciciosHistoricoController");
 
 router.get("/", ejerciciosHistoricoController.getEjerciciosHistorico);
-router.get("/:usuario/:ejercicio", ejerciciosHistoricoController.getEjerciciosHistoricoByUser);
+router.get("/:usuario", ejerciciosHistoricoController.getEjerciciosHistoricoByUser);
+router.get("/:usuario/:ejercicio", ejerciciosHistoricoController.getEjerciciosHistoricoByUserEx);
 router.post("/", ejerciciosHistoricoController.creaEjerciciosHistorico);
 
 module.exports = router;
