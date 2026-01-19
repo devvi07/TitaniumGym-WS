@@ -12,16 +12,27 @@ exports.creaEjerciciosHistorico = async (req, res) => {
   res.status(201).json(nuevo);
 };
 
+const mongoose = require('mongoose');
+
 exports.getEjerciciosHistoricoByUser = async (req, res) => {
   try {
-    const { usuario } = req.params;
+    let { usuario } = req.params;
+    usuario = usuario.trim();
 
-    console.log("PARAM usuario:", usuario);
-    console.log("TIPO:", typeof usuario);
+    let query;
 
-    const historico = await EjerciciosHistorico.find({ usuario });
+    if (mongoose.Types.ObjectId.isValid(usuario)) {
+      query = {
+        $or: [
+          { usuario: usuario },
+          { usuario: new mongoose.Types.ObjectId(usuario) }
+        ]
+      };
+    } else {
+      query = { usuario };
+    }
 
-    console.log("RESULTADO:", historico.length);
+    const historico = await EjerciciosHistorico.find(query);
 
     res.json(historico);
 
@@ -30,6 +41,7 @@ exports.getEjerciciosHistoricoByUser = async (req, res) => {
     res.status(500).json({ msg: 'Error al obtener ejercicios' });
   }
 };
+
 
 
 
