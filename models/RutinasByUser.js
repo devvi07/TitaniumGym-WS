@@ -16,7 +16,11 @@ const rutinasByUserSchema = new mongoose.Schema({
       ref: 'Ejercicios'
     }
   ],
-  data:[]
+  data:[],
+  cardio: {
+    type: String,
+    required: true
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('RutinasByUser', rutinasByUserSchema);
