@@ -17,7 +17,7 @@ exports.getEjerciciosHistoricoByUser = async (req, res) => {
     const { usuario } = req.params;
 
     const historico = await EjerciciosHistorico.find({
-      usuario
+      usuario: usuario   // string vs string
     });
 
     res.json(historico);
@@ -27,6 +27,7 @@ exports.getEjerciciosHistoricoByUser = async (req, res) => {
     res.status(500).json({ msg: 'Error al obtener ejercicios' });
   }
 };
+
 
 exports.getEjerciciosHistoricoByUserEx = async (req, res) => {
   try {
