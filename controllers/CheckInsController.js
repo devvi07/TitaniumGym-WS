@@ -28,7 +28,7 @@ exports.crearCheckIn = async (req, res) => {
   res.status(201).json(nuevo);
 };
 
-exports.actualizarCheckIn = async (req, res) => {
+/*exports.actualizarCheckIn = async (req, res) => {
   try {
     const actualizado = await CheckIn.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!actualizado) return res.status(404).json({ mensaje: "No encontrado" });
@@ -36,7 +36,27 @@ exports.actualizarCheckIn = async (req, res) => {
   } catch {
     res.status(400).json({ error: "ID inválido" });
   }
+};*/
+
+exports.actualizarCheckIn = async (req, res) => {
+  try {
+    const actualizado = await CheckIn.findOneAndUpdate(
+      { customer_id: req.params.customer_id }, // filtro por atributo
+      req.body,                                // datos a actualizar
+      { new: true }                            // devolver documento actualizado
+    );
+
+    if (!actualizado) {
+      return res.status(404).json({ mensaje: "No encontrado" });
+    }
+
+    res.json(actualizado);
+
+  } catch (error) {
+    res.status(400).json({ error: "Error al actualizar", detalle: error.message });
+  }
 };
+
 
 exports.eliminarCheckIn = async (req, res) => {
   try {
