@@ -59,3 +59,25 @@ exports.getEjerciciosHistoricoByUserEx = async (req, res) => {
     res.status(500).json({ msg: 'Error al obtener ejercicios' });
   }
 };
+
+exports.getEjerciciosHistoricoByUserExArr = async (req, res) => {
+  try {
+    const { usuario } = req.params;
+    const { ejercicios } = req.body; // arreglo de IDs
+
+    if (!Array.isArray(ejercicios) || ejercicios.length === 0) {
+      return res.status(400).json({ msg: 'Debes enviar un arreglo de ejercicios' });
+    }
+
+    const historico = await EjerciciosHistorico.find({
+      usuario,
+      ejercicio: { $in: ejercicios }
+    }).sort({ fecha: -1 }); // opcional: más recientes primero
+
+    res.json(historico);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: 'Error al obtener ejercicios' });
+  }
+};

@@ -5,6 +5,7 @@ const ejerciciosHistoricoController = require("../controllers/EjerciciosHistoric
 router.get("/", ejerciciosHistoricoController.getEjerciciosHistorico);
 router.get("/:usuario", ejerciciosHistoricoController.getEjerciciosHistoricoByUser);
 router.get("/:usuario/:ejercicio", ejerciciosHistoricoController.getEjerciciosHistoricoByUserEx);
+router.post("/:usuario", ejerciciosHistoricoController.getEjerciciosHistoricoByUserExArr);
 router.post("/", ejerciciosHistoricoController.creaEjerciciosHistorico);
 
 module.exports = router;
